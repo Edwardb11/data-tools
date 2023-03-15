@@ -1,0 +1,4 @@
+# Ignore log and venv directories
+
+venv
+logs
