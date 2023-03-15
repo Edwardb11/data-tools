@@ -1,0 +1,13 @@
+titanic_clean:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 54320
+      user: admin
+      password: admin
+      dbname: dbt
+      schema: tic_gs_2019_0823
+      threads: 3
+      keepalives_idle: 0 # default 0, indicating the system default
