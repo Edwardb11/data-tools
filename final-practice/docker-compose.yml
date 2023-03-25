@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    container_name: local_pgdb
+    restart: always
+    ports:
+      - "54320:5432"
+    environment:
+      POSTGRES_DB: dbt_superset
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      
+  superset:
+    container_name: superset 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8088"
+    volumes:
+      - type: bind
+        source: ./superset_config.py
+        target: /app/pythonpath/superset_config.py 
+
+volumes:
+  local_pgdata:
+  pgadmin-data:
