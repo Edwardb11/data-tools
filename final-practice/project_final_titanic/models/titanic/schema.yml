@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: dbt_supersettrain
+    database: dbt_superset
+    schema: public
+    tables:
+      - name: dbt_supersettrain
+        identifier: dbt_supersettrain
