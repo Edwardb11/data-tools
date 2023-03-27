@@ -1,0 +1,13 @@
+project_final_titanic:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: localhost
+      port: 54320
+      user: admin
+      password: admin
+      dbname: dbt_superset
+      schema: public
+      threads: 3
+      keepalives_idle: 0 # default 0, indicating the system default
