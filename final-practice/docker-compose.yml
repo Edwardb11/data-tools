@@ -1,6 +1,28 @@
 version: "3.8"
 
 services:
+  superset:
+    container_name: superset
+    image: amancevice/superset:latest
+    environment:
+      - SECRET_KEY=af7cbe1fe132be0dc1a7fc9b8fa89961102b2a00a483c64354e8fb760dc67516
+      - SUPERSET_DATABASE_URI=postgresql://admin:admin@db:5432/dbt_superset
+      - SUPERSET_LOAD_EXAMPLES=yes
+      - BASIC_AUTH_USERNAME=admin
+      - BASIC_AUTH_PASSWORD=admin
+    ports:
+      - "8080:8088"
+    depends_on:
+      - db
+    volumes:
+      - superset-data:/app/superset
+    command: >
+      sh -c "superset db upgrade &&
+             superset init &&
+             superset fab create-admin --username admin --firstname admin --lastname admin --email admin@superset.com --password admin &&
+             superset run -h 0.0.0.0 -p 8088"
+    restart: always
+
   db:
     image: postgres
     container_name: local_pgdb
@@ -25,19 +47,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-      
-  superset:
-    container_name: superset 
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8088"
-    volumes:
-      - type: bind
-        source: ./superset_config.py
-        target: /app/pythonpath/superset_config.py 
 
 volumes:
   local_pgdata:
   pgadmin-data:
+  superset-data:
