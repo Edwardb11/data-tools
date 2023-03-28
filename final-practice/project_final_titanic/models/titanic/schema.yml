@@ -1,9 +1,11 @@
 version: 2
 
-sources:
-  - name: dbt_supersettrain
-    database: dbt_superset
-    schema: public
-    tables:
-      - name: dbt_supersettrain
-        identifier: dbt_supersettrain
+models:
+  - name: passengers_by_class_survival
+    description: "Para clasificar el número de pasajeros por clase de viaje que sobrevivieron y no sobrevivieron"
+
+  - name: passengers_by_sex_survival
+    description: "Para clasificar el número de pasajeros por sexo que sobrevivieron y no sobrevivieron"
+
+  - name: passengers_by_age_survival
+    description: "-Para clasificar el número de pasajeros por edad que sobrevivieron y no sobrevivieron"
