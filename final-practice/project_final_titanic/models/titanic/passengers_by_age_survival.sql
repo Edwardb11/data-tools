@@ -17,5 +17,8 @@ GROUP BY
     age_group
 
 /* 
-La consulta devuelve el número total de pasajeros, el número total de sobrevivientes y el número total de no sobrevivientes agrupados por grupos de edad (niño, adulto y mayor). Se utiliza la función CASE para categorizar los pasajeros en los grupos de edad y la cláusula GROUP BY para agruparlos por grupo de edad.
+La consulta devuelve el número total de pasajeros, el número total de sobrevivientes 
+y el número total de no sobrevivientes agrupados por grupos de edad (niño, adulto y 
+mayor). Se utiliza la función CASE para categorizar los pasajeros en los grupos de edad 
+y la cláusula GROUP BY para agruparlos por grupo de edad.
  */
